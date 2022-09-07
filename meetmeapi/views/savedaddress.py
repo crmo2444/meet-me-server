@@ -54,6 +54,19 @@ class SavedAddressView(ViewSet):
             )
         serializer = SavedAddressSerializer(saved_address)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    def update(self, request, pk):
+        """Handle PUT requests for a category
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+
+        saved_address = SavedAddress.objects.get(pk=pk)
+        saved_address.name = request.data["name"]
+        saved_address.save()
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 class SavedAddressSerializer(serializers.ModelSerializer):
     """JSON serializer for saved_addresss
