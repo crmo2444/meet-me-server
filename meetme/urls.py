@@ -3,6 +3,7 @@ from django.conf.urls import include
 from django.urls import path
 from meetmeapi.views.auth import register_user, login_user
 from rest_framework import routers
+from meetmeapi.views.event import EventView
 from meetmeapi.views.meetmeuser import MeetMeUserView
 from meetmeapi.views.savedaddress import SavedAddressView
 from meetmeapi.views.savedresultlocation import SavedResultLocationView
@@ -11,6 +12,7 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', MeetMeUserView, 'user')
 router.register(r'saved_result_locations', SavedResultLocationView, 'data')
 router.register(r'saved_address', SavedAddressView, 'data')
+router.register(r'events', EventView, 'data')
 
 urlpatterns = [
     # Requests to http://localhost:8000/register will be routed to the register_user function
